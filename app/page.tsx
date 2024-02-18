@@ -1,12 +1,10 @@
-"use client"
-import Live from "@/components/Live";
-import { Room } from "./Room";
+import dynamic from "next/dynamic";
 
-export default function Page() {
-  return (
-    <div className=" h-[100vh] w-full flex justify-center items-center text-center">
+/**
+ * disable ssr to avoid pre-rendering issues of Next.js
+ *
+ * we're doing this because we're using a canvas element that can't be pre-rendered by Next.js on the server
+ */
+const App = dynamic(() => import("./App"), { ssr: false });
 
-      <Live />
-    </div>
-  );
-}
+export default App;
